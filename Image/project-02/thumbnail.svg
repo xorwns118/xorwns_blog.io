@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660" role="img" aria-labelledby="title desc">
-  <title id="title">2번 포트폴리오 썸네일 이미지</title>
-  <desc id="desc">프로젝트 이미지를 교체하기 전 사용하는 자리 이미지</desc>
-  <rect width="960" height="660" fill="#ffffff"/>
-  <rect x="34" y="34" width="892" height="592" rx="18" fill="#fff7ed" stroke="#7b8495" stroke-width="8"/>
-  <text x="480" y="300" fill="#172033" font-family="Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">2번 포트폴리오</text>
-  <text x="480" y="366" fill="#5b6578" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">썸네일 이미지</text>
-</svg>

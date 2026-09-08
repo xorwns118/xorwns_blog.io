@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diana_Action_Game Portfolio PDF</title>
+  <meta name="description" content="Unreal Engine 5 C++ 기반 3D 액션 전투 포트폴리오 PDF 원고">
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --page: #151619;
+      --panel: #1b1d21;
+      --panel-soft: #202328;
+      --ink: #f4f0e8;
+      --muted: #c9c0b3;
+      --soft: #918879;
+      --line: rgba(244, 240, 232, 0.16);
+      --teal: #45c1b6;
+      --red: #ef4138;
+      --gold: #dfb354;
+      --green: #7ccf8a;
+      --radius: 7px;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #090a0c;
+      color: var(--ink);
+      font-family: "Pretendard", "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+    }
+
+    body {
+      display: grid;
+      gap: 24px;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .page {
+      width: 297mm;
+      height: 210mm;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 8mm;
+      padding: 11mm 13mm 10mm;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        var(--page);
+      background-size: 22mm 22mm;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.38);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 92% 8%, rgba(69,193,182,0.12), transparent 28%),
+                  linear-gradient(135deg, rgba(239,65,56,0.05), transparent 42%);
+    }
+
+    .page > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8mm;
+      align-items: end;
+      padding-bottom: 4mm;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      margin: 0 0 2mm;
+      color: var(--teal);
+      font-size: 8.6pt;
+      line-height: 1;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: 38pt;
+      line-height: 0.98;
+      font-weight: 900;
+    }
+
+    h2 {
+      font-size: 24pt;
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    h3 {
+      font-size: 12.5pt;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      margin-top: 2.8mm;
+      max-width: 190mm;
+      color: var(--muted);
+      font-size: 10.8pt;
+      line-height: 1.48;
+      font-weight: 650;
+    }
+
+    .page-no {
+      color: var(--soft);
+      font-size: 8.5pt;
+      font-weight: 800;
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      gap: 5mm;
+    }
+
+    .two-col,
+    .two-col-even,
+    .three-col,
+    .four-col {
+      display: grid;
+      gap: 5mm;
+    }
+
+    .two-col {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: stretch;
+    }
+
+    .two-col-even {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .four-col {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .stack {
+      display: grid;
+      gap: 4mm;
+      min-height: 0;
+    }
+
+    .panel {
+      min-width: 0;
+      min-height: 0;
+      padding: 4.2mm;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(27, 29, 33, 0.86);
+    }
+
+    .panel p,
+    .list li {
+      color: var(--muted);
+      font-size: 9.7pt;
+      line-height: 1.45;
+      font-weight: 620;
+    }
+
+    .panel h3 + p {
+      margin-top: 2mm;
+    }
+
+    .list {
+      display: grid;
+      gap: 2.4mm;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 5mm;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.63em;
+      width: 2.2mm;
+      height: 2.2mm;
+      border-radius: 2px;
+      background: var(--teal);
+    }
+
+    .list li:nth-child(even)::before {
+      background: var(--gold);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 3mm;
+    }
+
+    .metric {
+      min-height: 25mm;
+      padding: 4mm;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 1.8mm;
+      color: var(--ink);
+      font-size: 16pt;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 8.8pt;
+      line-height: 1.35;
+      font-weight: 760;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 3mm;
+    }
+
+    .flow-step {
+      padding: 4mm;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(27, 29, 33, 0.86);
+    }
+
+    .flow-step small {
+      display: block;
+      margin-bottom: 2mm;
+      color: var(--red);
+      font-size: 7.5pt;
+      font-weight: 900;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: var(--ink);
+      font-size: 10pt;
+      line-height: 1.2;
+    }
+
+    .flow-step span {
+      display: block;
+      margin-top: 2mm;
+      color: var(--muted);
+      font-size: 8.4pt;
+      line-height: 1.38;
+      font-weight: 620;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .media-card,
+    .code-card {
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #0b0d10;
+    }
+
+    .frame {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #090a0d;
+    }
+
+    .frame img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .frame img.is-expandable {
+      cursor: zoom-in;
+    }
+
+    .frame img.is-expandable:hover,
+    .frame img.is-expandable:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: -2px;
+      filter: brightness(1.06);
+    }
+
+    figcaption {
+      flex: 0 0 auto;
+      padding: 2.8mm 3.2mm;
+      border-top: 1px solid rgba(244, 240, 232, 0.11);
+      background: rgba(11, 12, 15, 0.95);
+      color: var(--muted);
+      font-size: 8.6pt;
+      line-height: 1.34;
+      font-weight: 760;
+    }
+
+    figcaption strong {
+      display: block;
+      margin-bottom: 1mm;
+      color: var(--ink);
+      font-size: 9.8pt;
+    }
+
+    .hero-layout {
+      grid-template-columns: minmax(0, 1fr) 112mm;
+      align-items: stretch;
+    }
+
+    .cover-page .hero-layout {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      align-content: center;
+      gap: 6mm;
+    }
+
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7mm;
+    }
+
+    .cover-page .hero-title {
+      justify-content: flex-start;
+      gap: 5mm;
+    }
+
+    .hero-title .label {
+      color: var(--gold);
+      font-size: 10pt;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 150mm;
+      color: var(--muted);
+      font-size: 12.5pt;
+      line-height: 1.52;
+      font-weight: 700;
+    }
+
+    .cover-page .hero-copy {
+      max-width: 230mm;
+    }
+
+    .cover-page .media-card {
+      width: 188mm;
+      justify-self: end;
+      align-self: start;
+    }
+
+    .cover-page .media-card .frame,
+    .compact-media .frame {
+      flex: 0 0 auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .compact-media {
+      align-self: start;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+    }
+
+    .tag {
+      padding: 1.5mm 2.8mm;
+      border: 1px solid rgba(244,240,232,0.18);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.045);
+      font-size: 8pt;
+      font-weight: 800;
+    }
+
+    .gallery-2,
+    .gallery-3,
+    .gallery-4 {
+      display: grid;
+      gap: 5mm;
+      align-items: start;
+    }
+
+    .gallery-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gallery-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-2 .media-card,
+    .gallery-3 .media-card,
+    .gallery-4 .media-card {
+      align-self: start;
+    }
+
+    .gallery-2 .media-card .frame,
+    .gallery-3 .media-card .frame,
+    .gallery-4 .media-card .frame {
+      flex: 0 0 auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .gallery-2 .media-card .frame img,
+    .gallery-3 .media-card .frame img,
+    .gallery-4 .media-card .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .overview-focus {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: stretch;
+    }
+
+    .combat-proof {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+      align-items: start;
+    }
+
+    .combat-proof .media-card .frame {
+      flex: 0 0 auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .range-proof {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+      align-items: start;
+    }
+
+    .range-proof .code-card .frame {
+      flex: 0 0 auto;
+      aspect-ratio: 16 / 3.8;
+    }
+    .skill-page .gallery-4 {
+      gap: 3mm;
+    }
+
+    .skill-page .gallery-4 .media-card .frame {
+      aspect-ratio: 16 / 7;
+    }
+
+    .skill-page .gallery-4 figcaption {
+      padding: 2mm 3mm;
+      font-size: 8pt;
+    }
+
+    .skill-page .gallery-4 .panel {
+      padding: 3.2mm;
+    }
+
+    .skill-page .gallery-4 .panel h3 {
+      font-size: 11.2pt;
+    }
+
+    .skill-page .gallery-4 .list {
+      gap: 1.8mm;
+    }
+
+    .skill-page .gallery-4 .list li {
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+
+    .code-page {
+      grid-template-rows: minmax(0, 1fr);
+    }
+
+    .code-stack-large {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .code-stack-large .code-card.large img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+
+    .code-card.large .frame {
+      padding: 2mm;
+    }
+
+    .code-card.large img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .code-card.fit-width img {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+
+    .code-card.short .frame {
+      min-height: 36mm;
+      max-height: 58mm;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 3.2mm;
+    }
+
+    .problem {
+      min-height: 39mm;
+      padding: 4mm;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(27, 29, 33, 0.92);
+    }
+
+    .problem small {
+      display: inline-block;
+      margin-bottom: 2mm;
+      color: var(--gold);
+      font-size: 7.6pt;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .problem h3 {
+      font-size: 10.8pt;
+    }
+
+    .problem p {
+      margin-top: 2mm;
+      color: var(--muted);
+      font-size: 8.7pt;
+      line-height: 1.38;
+      font-weight: 620;
+    }
+
+    .note {
+      padding: 4mm;
+      border-left: 3px solid var(--teal);
+      background: rgba(69,193,182,0.07);
+      color: var(--muted);
+      font-size: 9.5pt;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .page.theme-paper {
+      background: #e1d6c4;
+      color: #171717;
+    }
+
+    .page.theme-paper::before {
+      opacity: 0;
+    }
+
+    .theme-paper .kicker {
+      color: #a33b32;
+    }
+
+    .theme-paper .subtitle,
+    .theme-paper .panel p,
+    .theme-paper .list li,
+    .theme-paper .problem p {
+      color: #51483c;
+    }
+
+    .theme-paper .panel,
+    .theme-paper .problem {
+      background: rgba(255,255,255,0.38);
+      border-color: rgba(30,30,30,0.14);
+    }
+
+    .theme-paper .page-head {
+      border-color: rgba(30,30,30,0.18);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(8, 9, 11, 0.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      cursor: zoom-out;
+    }
+
+    .lightbox-panel {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 1280px);
+      max-height: 90vh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid rgba(244, 240, 232, 0.22);
+      border-radius: var(--radius);
+      background: #111318;
+      box-shadow: 0 22px 90px rgba(0,0,0,0.58);
+    }
+
+    .lightbox-close {
+      justify-self: end;
+      min-height: 36px;
+      padding: 0 13px;
+      border: 1px solid rgba(244, 240, 232, 0.24);
+      border-radius: 6px;
+      background: rgba(244, 240, 232, 0.08);
+      color: var(--ink);
+      font-size: 9.5pt;
+      line-height: 1;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      border-color: var(--red);
+      outline: none;
+    }
+
+    .lightbox-image-wrap {
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #07080a;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: calc(90vh - 124px);
+      display: block;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 9.5pt;
+      line-height: 1.45;
+      font-weight: 720;
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        display: block;
+        padding: 0;
+        background: white;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      .lightbox {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover-page" aria-label="Page 1 Cover">
+    <div class="content hero-layout">
+      <div class="hero-title">
+        <div>
+          <p class="label">UE5 C++ Action Combat Prototype</p>
+          <h1>Diana_Action_Game</h1>
+          <p class="hero-copy">Unreal Engine 5와 C++로 제작한 3D 액션 전투 프로토타입입니다. DataAsset 기반 스킬 시스템, AnimNotifyState 전투 판정, Behavior Tree AI, 팀 기반 미니언 스포너와 전투 UI를 직접 구현했습니다.</p>
+        </div>
+        <div class="tag-row" aria-label="기술 스택">
+          <span class="tag">Unreal Engine 5.8</span>
+          <span class="tag">C++</span>
+          <span class="tag">Behavior Tree</span>
+          <span class="tag">AI Perception</span>
+          <span class="tag">UMG</span>
+          <span class="tag">Primary DataAsset</span>
+        </div>
+      </div>
+      <figure class="media-card">
+        <div class="frame"><img src="../Image/Diana_Action_Game/skill-cool-ui-use-1-4.gif" alt="스킬 사용과 쿨타임 UI"></div>
+        <figcaption><strong>대표 플레이 장면</strong>스킬 1~4 사용, 쿨타임 UI, 전투 피드백 흐름</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 2 Overview">
+    <header class="page-head">
+      <div>
+        <p class="kicker">01 Project Overview</p>
+        <h2>프로젝트 핵심 요약</h2>
+        <p class="subtitle">스킬 실행, 전투 판정, AI 의사결정, 팀 기반 스포너 흐름을 C++ 컴포넌트와 Unreal 에디터 데이터로 연결했습니다.</p>
+      </div>
+      <div class="page-no">02</div>
+    </header>
+    <div class="content stack">
+      <div class="metric-grid">
+        <div class="metric"><strong>UE 5.8</strong><span>Unreal Engine 기반 3D 액션 프로토타입</span></div>
+        <div class="metric"><strong>C++</strong><span>핵심 게임플레이 시스템 직접 구현</span></div>
+        <div class="metric"><strong>Solo</strong><span>플레이어, 스킬, AI, UI, 스폰 구조 담당</span></div>
+        <div class="metric"><strong>Data Driven</strong><span>DataAsset과 DataTable을 활용한 확장 구조</span></div>
+      </div>
+      <div class="three-col">
+        <div class="panel"><h3>전투 시스템</h3><p>입력, 스킬 데이터, 애니메이션 Notify, 데미지, UI 갱신을 하나의 실행 파이프라인으로 연결했습니다.</p></div>
+        <div class="panel"><h3>AI 의사결정</h3><p>AI Perception, 어그로, Blackboard, Behavior Tree를 이용해 타겟 우선순위와 Spawner 목적지를 분리했습니다.</p></div>
+        <div class="panel"><h3>문제 해결</h3><p>MoveTo 도달 판정, IsInRange 거리 기준, NavMesh 목표점 문제를 추적해 Spawner 공격 루프를 안정화했습니다.</p></div>
+      </div>
+      <div class="two-col-even overview-focus">
+        <div class="panel"><h3>담당 역할</h3><ul class="list"><li>Player 입력과 SkillComponent 실행 흐름 구현</li><li>Monster AIController, Behavior Tree, Blackboard 설계</li><li>팀 기반 Spawner와 미니언 Objective 연결</li><li>HUD, 쿨타임, HP/MP, Overhead Bar UI 연동</li></ul></div>
+        <div class="panel"><h3>기술적으로 해결한 문제</h3><ul class="list"><li>BT 공유 에셋에서 미니언별 공격 범위를 Blackboard 기준으로 관리</li><li>MoveTo 완료 조건과 IsInRange 판정을 같은 거리 기준으로 통일</li><li>Spawner 높이 차이와 NavMesh 목표 지점 문제를 Dist2D와 MinDist 기준으로 분리</li><li>사망 상태 Actor를 타겟 후보에서 제외하고 Blackboard Target을 정리</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 3 Combat Pipeline">
+    <header class="page-head">
+      <div>
+        <p class="kicker">02 Combat Pipeline</p>
+        <h2>입력부터 데미지 적용까지 이어지는 전투 흐름</h2>
+        <p class="subtitle">입력 이벤트가 SkillComponent로 전달되고, 스킬 데이터 검증, 몽타주 재생, Notify 판정, 데미지 적용, UI 갱신 순서로 처리됩니다.</p>
+      </div>
+      <div class="page-no">03</div>
+    </header>
+    <div class="content stack">
+      <div class="flow">
+        <div class="flow-step"><small>STEP 01</small><strong>Enhanced Input</strong><span>스킬 1~4 입력을 SkillComponent 호출로 연결</span></div>
+        <div class="flow-step"><small>STEP 02</small><strong>SkillComponent</strong><span>쿨타임, 비용, 실행 가능 상태 검증</span></div>
+        <div class="flow-step"><small>STEP 03</small><strong>Primary DataAsset</strong><span>데미지, 몽타주, 이펙트, 이동 제한 데이터 참조</span></div>
+        <div class="flow-step"><small>STEP 04</small><strong>AnimNotifyState</strong><span>히트 체크와 콤보 입력 가능 구간 제어</span></div>
+        <div class="flow-step"><small>STEP 05</small><strong>Damage & UI</strong><span>피해 적용 후 HP/MP, 쿨타임 UI 갱신</span></div>
+      </div>
+      <div class="two-col-even combat-proof">
+        <figure class="media-card compact-media"><div class="frame"><img src="../Image/Diana_Action_Game/skill-cool-ui-use-1-4.gif" alt="스킬 사용 흐름"></div><figcaption><strong>스킬 실행 결과</strong>입력과 쿨타임 UI가 동시에 갱신되는 흐름</figcaption></figure>
+        <figure class="code-card fit-width"><div class="frame"><img src="../Image/Diana_Action_Game/uskillcomponent-try-execute-skill.png" alt="TryExecuteSkill 코드"></div><figcaption><strong>USkillComponent::TryExecuteSkill</strong>스킬 실행 전 검증 진입점</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="page skill-page" aria-label="Page 4 Skill Types">
+    <header class="page-head">
+      <div>
+        <p class="kicker">03 Skill Types</p>
+        <h2>하나의 실행 흐름에서 처리되는 여러 스킬 타입</h2>
+        <p class="subtitle">근접, 투사체, 광역, Shield 버프를 같은 SkillComponent 구조에 태우고, 타입별 차이는 데이터와 하위 실행 로직으로 분리했습니다.</p>
+      </div>
+      <div class="page-no">04</div>
+    </header>
+    <div class="content gallery-4">
+      <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/skill-cool-ui-use-1-4.gif" alt="스킬 1~4 사용"></div><figcaption><strong>Combat Skills</strong>스킬 슬롯 1~4 입력과 쿨타임 갱신</figcaption></figure>
+      <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/aoe-skill.gif" alt="AoE 스킬"></div><figcaption><strong>AoE</strong>Overlap 대상 탐색과 Radial Damage 분리</figcaption></figure>
+      <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/shield-buff.gif" alt="Shield Buff"></div><figcaption><strong>Shield Buff</strong>버프 타이머와 Niagara 이펙트 부착</figcaption></figure>
+      <div class="panel"><h3>공통 처리 기준</h3><ul class="list"><li>입력은 SkillComponent의 동일한 실행 진입점으로 전달</li><li>스킬별 차이는 DataAsset과 하위 로직에서 분리</li><li>쿨타임, 비용, 실행 가능 상태를 먼저 검증</li><li>실제 판정과 이펙트는 AnimNotifyState 타이밍에 맞춰 실행</li></ul></div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 5 Combat Detail">
+    <header class="page-head">
+      <div>
+        <p class="kicker">04 Skill Data & Animation</p>
+        <h2>DataAsset과 AnimNotifyState로 분리한 전투 데이터</h2>
+        <p class="subtitle">스킬 데이터는 에디터에서 조정하고, 공격 판정 타이밍은 AnimNotifyState에서 제어해 코드와 데이터의 책임을 나눴습니다.</p>
+      </div>
+      <div class="page-no">05</div>
+    </header>
+    <div class="content two-col-even">
+      <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/skill-data-asset.png" alt="SkillDataAsset"></div><figcaption><strong>SkillDataAsset</strong>스킬 비용, 쿨타임, 몽타주, 이펙트, 이동 제한 설정</figcaption></figure>
+      <div class="stack">
+        <div class="panel"><h3>구현 의도</h3><p>스킬마다 별도 클래스를 늘리는 대신, 공통 실행 흐름은 SkillComponent에 두고 스킬별 차이를 DataAsset으로 분리했습니다.</p></div>
+        <div class="panel"><h3>AnimNotifyState</h3><p>공격 판정 구간과 콤보 입력 가능 구간을 몽타주 타이밍에 맞춰 제어해 애니메이션과 전투 로직을 연결했습니다.</p></div>
+        <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/aoe-skill.gif" alt="AoE 실행 타이밍"></div><figcaption><strong>Notify 실행 결과</strong>몽타주 타이밍에 맞춘 광역 스킬 실행</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 6 UI Feedback">
+    <header class="page-head">
+      <div>
+        <p class="kicker">05 UI And Feedback</p>
+        <h2>전투 상태를 플레이어가 읽을 수 있게 만드는 UI 연동</h2>
+        <p class="subtitle">스탯 변경, 스킬 쿨타임, 피격 상태를 UMG와 Dynamic Material Instance에 연결해 전투 상황을 즉시 확인할 수 있도록 했습니다.</p>
+      </div>
+      <div class="page-no">06</div>
+    </header>
+    <div class="content two-col-even">
+      <figure class="media-card compact-media"><div class="frame"><img src="../Image/Diana_Action_Game/skill-cool-ui-cooldown-crop.png" alt="전투 UI"></div><figcaption><strong>Cooldown UI</strong>스킬 사용 후 슬롯별 Radial Overlay 갱신</figcaption></figure>
+      <div class="stack">
+        <div class="panel"><h3>UI 갱신 흐름</h3><ul class="list"><li>SkillComponent에서 스킬 사용 성공 시 쿨타임 시작</li><li>HUD는 각 슬롯의 Dynamic Material Instance를 보관</li><li>남은 쿨타임 비율을 Percent 파라미터로 전달</li><li>HP/MP와 Overhead HP Bar도 스탯 변화에 맞춰 갱신</li></ul></div>
+        <figure class="code-card fit-width"><div class="frame"><img src="../Image/Diana_Action_Game/umyhud-initialize-cooldown-mid.png" alt="HUD Cooldown 코드"></div><figcaption><strong>UMyHUD Cooldown MID 초기화</strong>슬롯별 Overlay Material을 생성하고 재사용</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 7 Monster AI">
+    <header class="page-head">
+      <div>
+        <p class="kicker">06 Monster AI</p>
+        <h2>AI Perception과 Behavior Tree 기반 전투 AI</h2>
+        <p class="subtitle">감지와 피격 자극을 바탕으로 어그로를 계산하고, Behavior Tree에서 타겟 선택, 이동, 회전, 스킬 사용을 분리했습니다.</p>
+      </div>
+      <div class="page-no">07</div>
+    </header>
+    <div class="content two-col-even">
+      <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/ai-behavior-tree.png" alt="Behavior Tree"></div><figcaption><strong>BT_Minion</strong>Target/Spawner 분기와 공격 거리 Decorator</figcaption></figure>
+      <div class="stack">
+        <div class="panel"><h3>AI 구현 포인트</h3><ul class="list"><li>Sight 감지 성공 시 어그로 증가</li><li>Damage 자극 시 더 높은 어그로 증가</li><li>감지 해제 대상은 마지막 위치와 시간을 저장</li><li>살아 있는 후보가 없으면 Blackboard Target 제거</li><li>Target이 없을 때 Spawner 분기로 이동</li></ul></div>
+        <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/ai-trace.gif" alt="AI 추적 디버그"></div><figcaption><strong>AI Trace</strong>감지, 타겟 선택, 이동 흐름 디버깅</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 8 Range Debugging">
+    <header class="page-head">
+      <div>
+        <p class="kicker">07 AI Range Debugging</p>
+        <h2>MoveTo 완료 조건과 IsInRange 판정 기준 통일</h2>
+        <p class="subtitle">원거리 미니언이 사거리보다 가까이 붙거나 Spawner 주변을 맴도는 문제를 MoveTo 완료 반경, Decorator 조건, 목표 위치의 높이 차이로 분해했습니다.</p>
+      </div>
+      <div class="page-no">08</div>
+    </header>
+    <div class="content stack">
+      <div class="three-col">
+        <div class="panel"><h3>원인</h3><p>3D 거리 계산이 Spawner와 미니언의 높이 차이를 포함해 실제 지상 공격 거리보다 멀게 판정했습니다.</p></div>
+        <div class="panel"><h3>해결</h3><p>거리 판정을 Dist2D <= Range + MinDist 기준으로 통일하고 MoveTo goal과 완료 거리를 분리했습니다.</p></div>
+        <div class="panel"><h3>주의</h3><p>BT 에셋은 공유되므로 미니언별 Range는 노드 멤버가 아니라 Blackboard 또는 NodeMemory에서 관리합니다.</p></div>
+      </div>
+      <div class="two-col-even range-proof">
+        <figure class="code-card fit-width"><div class="frame"><img src="../Image/Diana_Action_Game/udeco-isinrange-calculate-raw-condition-value.png" alt="IsInRange 코드"></div><figcaption><strong>Deco_IsInRange</strong>공격 가능 거리 판정</figcaption></figure>
+        <div class="stack">
+          <div class="panel"><h3>Blackboard 참조 값</h3><ul class="list"><li><strong>Target / Spawner</strong> 현재 공격 대상과 목적지 분기 기준</li><li><strong>Range</strong> 미니언별 공격 사거리</li><li><strong>AtkMinRange</strong> Spawner 메시 크기와 충돌 기준을 보정하는 최소 거리</li><li><strong>판정식</strong> Dist2D <= Range + MinDist</li></ul></div>
+          <div class="panel"><h3>UseSkill 진입 기준</h3><p>MoveToSpawner Task는 실제 이동 목표를 Spawner 위치로 유지하고, TickTask에서 Range + MinDist 안에 들어오면 이동을 중단해 Success를 반환합니다. Decorator도 같은 기준을 사용해야 다음 노드인 UseSkill로 자연스럽게 전환됩니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 9 Spawner Flow">
+    <header class="page-head">
+      <div>
+        <p class="kicker">08 Team Spawner</p>
+        <h2>팀 기반 미니언 스포너와 Objective 연결</h2>
+        <p class="subtitle">스폰할 몬스터 클래스, 최초 스폰 시간, 반복 딜레이를 데이터로 설정하고 생성된 몬스터 AI가 상대 팀 Spawner를 목적지로 삼도록 연결했습니다.</p>
+      </div>
+      <div class="page-no">09</div>
+    </header>
+    <div class="content stack">
+      <div class="gallery-2">
+        <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/friendly-minion-spawn.gif" alt="Friendly 미니언 스폰"></div><figcaption><strong>Friendly Minion Spawn</strong>아군 미니언 생성 후 Enemy Spawner를 향해 이동</figcaption></figure>
+        <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/enemy-minion-spawn.gif" alt="Enemy 미니언 스폰"></div><figcaption><strong>Enemy Minion Spawn</strong>적군 미니언 생성 후 Friendly Spawner를 향해 이동</figcaption></figure>
+      </div>
+      <div class="two-col-even">
+        <div class="panel"><h3>Spawner 역할</h3><p>스포너는 단순 생성 Actor가 아니라 팀 기반 전투 흐름의 목적지입니다. 주변에 적이 없을 때 미니언은 상대 Spawner를 Blackboard에 저장하고 이동합니다.</p></div>
+        <div class="panel"><h3>구현 포인트</h3><ul class="list"><li>Spawn 대상은 TSubclassOf로 관리</li><li>생성된 몬스터에 Friendly / Enemy 팀 지정</li><li>상대 Spawner를 AIController에 전달</li><li>Spawner HP 0 조건을 Victory / Defeat 흐름과 연결 가능</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 10 Spawner Code">
+    <header class="page-head">
+      <div>
+        <p class="kicker">09 Spawner Code</p>
+        <h2>미니언 생성과 AI Objective 등록 코드</h2>
+        <p class="subtitle">미니언 Spawn, 팀 지정, AIController Objective 전달을 Spawner 생성 흐름 안에서 처리합니다.</p>
+      </div>
+      <div class="page-no">10</div>
+    </header>
+    <div class="content two-col-even">
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/aminion-spawner-spawn-minions.png" alt="AMinionSpawner SpawnMinions 코드"></div><figcaption><strong>AMinionSpawner::SpawnMinions</strong>미니언 생성, 팀 지정, AIController objective 연결</figcaption></figure>
+      <div class="stack">
+        <figure class="code-card short fit-width"><div class="frame"><img src="../Image/Diana_Action_Game/amon-ai-controller-init-spawner-objective.png" alt="InitSpawnerObjective 코드"></div><figcaption><strong>AMonAIController::InitSpawnerObjective</strong>상대 Spawner를 Blackboard 목표로 등록</figcaption></figure>
+        <figure class="media-card"><div class="frame"><img src="../Image/Diana_Action_Game/spawner-setting.png" alt="Spawner 설정"></div><figcaption><strong>Spawner Setting</strong>몬스터 클래스, 스폰 지연 시간, 반복 딜레이 설정</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 11 MoveToSpawner ExecuteTask">
+    <header class="page-head">
+      <div>
+        <p class="kicker">10 MoveToSpawner Task</p>
+        <h2>MoveToSpawner ExecuteTask</h2>
+        <p class="subtitle">기본 MoveTo 노드 대신 Spawner 공격 루프에 맞춘 Task를 만들고, 목표 위치와 완료 거리 기준을 분리했습니다.</p>
+      </div>
+      <div class="page-no">11</div>
+    </header>
+    <div class="content code-page">
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/utask-move-to-spawner-execute-task.png" alt="MoveToSpawner ExecuteTask 코드"></div><figcaption><strong>UTask_MoveToSpawner::ExecuteTask</strong>Spawner key와 Range 값을 읽고 MoveRequest를 시작하는 코드</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 12 MoveToSpawner TickTask">
+    <header class="page-head">
+      <div>
+        <p class="kicker">11 MoveToSpawner Finish Condition</p>
+        <h2>TickTask와 IsInRange의 거리 기준 통일</h2>
+        <p class="subtitle">Task 완료 조건과 Decorator true 조건이 같은 기준을 사용하도록 맞춰, Spawner 도달 후 UseSkill로 자연스럽게 전환되도록 했습니다.</p>
+      </div>
+      <div class="page-no">12</div>
+    </header>
+    <div class="content code-stack-large">
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/utask-move-to-spawner-tick-task.png" alt="MoveToSpawner TickTask 코드"></div><figcaption><strong>UTask_MoveToSpawner::TickTask</strong>Dist2D <= Range + MinDist 기준으로 이동 중단 및 Task 성공 처리</figcaption></figure>
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/udeco-isinrange-calculate-raw-condition-value.png" alt="IsInRange 코드"></div><figcaption><strong>UDeco_IsInRange::CalculateRawConditionValue</strong>Decorator에서도 같은 거리 기준으로 공격 가능 여부 판단</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 13 SkillComponent Code">
+    <header class="page-head">
+      <div>
+        <p class="kicker">12 SkillComponent Code</p>
+        <h2>TryExecuteSkill 진입점</h2>
+        <p class="subtitle">스킬 슬롯, 쿨타임, 비용, 실행 상태를 검증하고, 조건을 만족하면 스킬 데이터의 실행 로직으로 넘어갑니다.</p>
+      </div>
+      <div class="page-no">13</div>
+    </header>
+    <div class="content code-page">
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/uskillcomponent-try-execute-skill.png" alt="USkillComponent TryExecuteSkill 코드"></div><figcaption><strong>USkillComponent::TryExecuteSkill</strong>스킬 실행 전 검증과 Montage section 이동 처리</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="page" aria-label="Page 14 HUD Code">
+    <header class="page-head">
+      <div>
+        <p class="kicker">13 UI Code</p>
+        <h2>Cooldown Overlay MID 초기화</h2>
+        <p class="subtitle">스킬 슬롯별 Cooldown Overlay MID를 구성하고, UI 업데이트에서 재사용할 수 있도록 캐싱합니다.</p>
+      </div>
+      <div class="page-no">14</div>
+    </header>
+    <div class="content code-page">
+      <figure class="code-card large"><div class="frame"><img src="../Image/Diana_Action_Game/umyhud-initialize-cooldown-mid.png" alt="UMyHUD Cooldown MID 코드"></div><figcaption><strong>UMyHUD Cooldown MID 초기화</strong>CooldownOverlay MID 생성과 Percent 초기화</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="page theme-paper" aria-label="Page 15 Problem Solving Summary">
+    <header class="page-head">
+      <div>
+        <p class="kicker">14 Problem Solving</p>
+        <h2>문제 해결 사례 요약</h2>
+        <p class="subtitle">이동 목표, 공격 거리, 데미지 대상 필터링을 코드 흐름 기준으로 추적해 전투 루프의 안정성을 개선했습니다.</p>
+      </div>
+      <div class="page-no">15</div>
+    </header>
+    <div class="content problem-grid">
+      <article class="problem"><small>Range</small><h3>원거리 미니언이 공격 범위를 무시하고 붙는 현상</h3><p>MoveTo 완료 반경과 Decorator 판정 기준이 다르다는 점을 확인하고 Range + MinDist 기준으로 통일했습니다.</p></article>
+      <article class="problem"><small>Spawner</small><h3>Friendly 미니언만 Spawner 이동에 실패</h3><p>BT 논리가 아니라 NavMesh 목표점 투영과 구조물 영향 문제로 원인을 좁히고 커스텀 MoveToSpawner Task로 분리했습니다.</p></article>
+      <article class="problem"><small>Distance</small><h3>Spawner 뒤쪽까지 이동 후 공격하는 문제</h3><p>3D 거리 계산의 Z 차이와 목표 위치 기준을 분리하고, 실제 공격 판정은 Dist2D 기준으로 처리했습니다.</p></article>
+      <article class="problem"><small>Projectile</small><h3>Spawner가 Projectile Hit 대상에서 제외될 수 있음</h3><p>Spawner는 Pawn이 아니므로 APawn 캐스팅에만 의존하지 않고 팀 판정 가능한 Actor 기준으로 확장했습니다.</p></article>
+      <article class="problem"><small>AoE</small><h3>광역 피해가 의도보다 여러 번 들어갈 수 있음</h3><p>ApplyRadialDamage의 Actor 배열이 피해 대상이 아니라 무시 목록임을 확인하고 이펙트 대상 탐색과 데미지 호출을 분리했습니다.</p></article>
+      <article class="problem"><small>Death</small><h3>죽은 대상이 AI 타겟으로 남는 문제</h3><p>Target selection service에서 사망 상태를 제외하고 후보가 없을 때 Blackboard Target을 비워 stale target을 방지했습니다.</p></article>
+    </div>
+  </section>
+
+  <div class="lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" hidden>
+    <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="확대 이미지 닫기"></button>
+    <div class="lightbox-panel" role="document">
+      <button class="lightbox-close" type="button" data-lightbox-close>닫기</button>
+      <div class="lightbox-image-wrap">
+        <img class="lightbox-image" id="lightboxImage" alt="">
+      </div>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const lightbox = document.querySelector("#imageLightbox");
+      const lightboxImage = document.querySelector("#lightboxImage");
+      const lightboxCaption = document.querySelector("#lightboxCaption");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+      const imageSelector = ".frame img";
+      let previousFocus = null;
+
+      const cleanText = (value) => value.replace(/\s+/g, " ").trim();
+
+      const getCaption = (image) => {
+        const figureCaption = image.closest("figure")?.querySelector("figcaption");
+        return image.dataset.caption
+          || figureCaption?.textContent
+          || image.getAttribute("alt")
+          || "확대 이미지";
+      };
+
+      const openLightbox = (image) => {
+        previousFocus = document.activeElement;
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.getAttribute("alt") || cleanText(getCaption(image));
+        lightboxCaption.textContent = cleanText(getCaption(image));
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+        closeButton.focus();
+      };
+
+      const closeLightbox = () => {
+        lightbox.hidden = true;
+        document.body.classList.remove("lightbox-open");
+        lightboxImage.removeAttribute("src");
+
+        if (previousFocus && typeof previousFocus.focus === "function") {
+          previousFocus.focus();
+        }
+      };
+
+      document.querySelectorAll(imageSelector).forEach((image) => {
+        image.classList.add("is-expandable");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("aria-label", `${image.getAttribute("alt") || "이미지"} 확대 보기`);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (event.target.closest("[data-lightbox-close]")) {
+          closeLightbox();
+          return;
+        }
+
+        const image = event.target.closest(imageSelector);
+        if (!image || lightbox.contains(image)) {
+          return;
+        }
+
+        openLightbox(image);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox.hidden && event.key === "Escape") {
+          closeLightbox();
+          return;
+        }
+
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        const image = event.target.closest(imageSelector);
+        if (!image || lightbox.contains(image)) {
+          return;
+        }
+
+        event.preventDefault();
+        openLightbox(image);
+      });
+    })();
+  </script>
+</body>
+</html>
+

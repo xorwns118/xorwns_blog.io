@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
-  <title id="title">3번 포트폴리오 상세 이미지</title>
-  <desc id="desc">상세 화면 이미지를 교체하기 전 사용하는 자리 이미지</desc>
-  <rect width="960" height="600" fill="#ffffff"/>
-  <rect x="38" y="38" width="884" height="524" rx="18" fill="#f8fafc" stroke="#64748b" stroke-width="8"/>
-  <text x="480" y="284" fill="#172033" font-family="Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">3번 프로젝트</text>
-  <text x="480" y="346" fill="#5b6578" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">상세 이미지 자리</text>
-</svg>

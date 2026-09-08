@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swifter - Unity 모바일 게임 포트폴리오</title>
+  <meta name="description" content="Unity와 C#으로 제작한 모바일 하이퍼 캐주얼 퍼즐 게임 Swifter 포트폴리오">
+  <style>
+    :root {
+      --ink: #10242f;
+      --muted: #52616b;
+      --paper: #fbfcf7;
+      --surface: #ffffff;
+      --line: #d9e6e8;
+      --teal: #49c8c5;
+      --deep-teal: #0b6f79;
+      --yellow: #ffc928;
+      --orange: #ff8a2a;
+      --coral: #ef5757;
+      --violet: #7357d8;
+      --shadow: 0 18px 44px rgba(16, 36, 47, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      padding: 0.85rem 6vw;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      background: rgba(251, 252, 247, 0.9);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 900;
+      color: var(--deep-teal);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--deep-teal);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      overflow: hidden;
+      background-image: url("../Image/Swifter_Portfolio/Background.jpg");
+      background-size: cover;
+      background-position: center;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(9, 35, 45, 0.72) 0%, rgba(9, 35, 45, 0.42) 48%, rgba(9, 35, 45, 0.22) 100%);
+    }
+
+    .hero-inner {
+      width: min(1120px, 88vw);
+      min-height: 82vh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 3.5rem 0 4rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      border-radius: 8px;
+      color: #ffffff;
+      background: rgba(16, 36, 47, 0.36);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 1.3rem 0 0.65rem;
+      color: #ffffff;
+      font-size: 4.5rem;
+      line-height: 0.98;
+      letter-spacing: 0;
+      text-shadow: 0 5px 22px rgba(16, 36, 47, 0.35);
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-shadow: 0 4px 18px rgba(16, 36, 47, 0.42);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .hero-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.85rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(16, 36, 47, 0.15);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 430px;
+    }
+
+    .logo-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(390px, 100%);
+      border: 5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(3deg);
+      background: var(--surface);
+    }
+
+    .character-panel {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: min(330px, 82%);
+      border: 5px solid #ffffff;
+      border-radius: 8px;
+      background: #101820;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(-4deg);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 5rem 6vw;
+    }
+
+    .section:nth-of-type(even) {
+      background: #eef9f7;
+    }
+
+    .section-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 2.25rem;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .metric,
+    .feature,
+    .note,
+    .summary-card,
+    .code-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(16, 36, 47, 0.07);
+    }
+
+    .metric {
+      padding: 1.2rem;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .summary-card {
+      padding: 1.2rem;
+      min-height: 168px;
+      border-top: 6px solid var(--teal);
+    }
+
+    .summary-card:nth-child(2) {
+      border-top-color: var(--orange);
+    }
+
+    .summary-card:nth-child(3) {
+      border-top-color: var(--violet);
+    }
+
+    .summary-card strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 1.08rem;
+    }
+
+    .summary-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .metric strong {
+      color: var(--deep-teal);
+      font-size: 2.15rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      counter-reset: step;
+    }
+
+    .feature {
+      min-height: 230px;
+      padding: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature::before {
+      counter-increment: step;
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .feature h3,
+    .note h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .feature p,
+    .note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .logic-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1.6rem;
+      align-items: stretch;
+    }
+
+    .architecture-frame {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .architecture-frame img {
+      width: 100%;
+      background: #fbfcf7;
+    }
+
+    .diagram-caption {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .phone-shot {
+      min-height: 560px;
+      border-radius: 8px;
+      background: url("../Image/Swifter_Portfolio/Background2.jpg") center / cover;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(16, 36, 47, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-shot img {
+      position: absolute;
+      left: 50%;
+      bottom: 2rem;
+      width: 72%;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 18px 18px rgba(16, 36, 47, 0.28));
+    }
+
+    .logic-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .note {
+      padding: 1.2rem;
+    }
+
+    .note.accent-teal {
+      border-top: 6px solid var(--teal);
+    }
+
+    .note.accent-orange {
+      border-top: 6px solid var(--orange);
+    }
+
+    .note.accent-coral {
+      border-top: 6px solid var(--coral);
+    }
+
+    .note.accent-violet {
+      border-top: 6px solid var(--violet);
+    }
+
+    .tech-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tech-list li {
+      min-height: 132px;
+      padding: 1.2rem;
+      border-left: 6px solid var(--deep-teal);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(16, 36, 47, 0.07);
+    }
+
+    .tech-list strong {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .tech-list span {
+      color: var(--muted);
+    }
+
+    .code-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .code-card {
+      padding: 1.2rem;
+      background: var(--ink);
+      color: #ffffff;
+    }
+
+    .code-card h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .code-card p {
+      margin: 0.45rem 0 0;
+      color: #cfe4e7;
+    }
+
+    pre {
+      margin: 0.9rem 0 0;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow: auto;
+      background: #07161d;
+      color: #eaf9f8;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .evidence {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(16, 36, 47, 0.07);
+    }
+
+    .evidence img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      object-position: center;
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .evidence figcaption {
+      padding: 1rem 1.1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 0.9rem;
+      color: #16313e;
+      overflow-wrap: anywhere;
+    }
+
+    p code,
+    li code {
+      padding: 0.08rem 0.24rem;
+      border-radius: 5px;
+      background: #e4f4f3;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font-size: inherit;
+      overflow-wrap: normal;
+    }
+
+    .closing {
+      background: var(--ink);
+      color: #ffffff;
+      padding: 4rem 6vw;
+    }
+
+    .closing-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .closing h2 {
+      color: #ffffff;
+    }
+
+    .closing p {
+      margin: 0.8rem 0 0;
+      color: #d2ebec;
+      max-width: 720px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: flex-end;
+    }
+
+    .links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 1rem;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .links a.secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+    }
+
+    @media (max-width: 920px) {
+      .hero-inner,
+      .section-head,
+      .logic-grid,
+      .closing-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        gap: 1rem;
+        padding-top: 2.5rem;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+      }
+
+      .hero-copy {
+        font-size: 1.08rem;
+      }
+
+      .hero-art {
+        min-height: 350px;
+      }
+
+      .metrics,
+      .summary-grid,
+      .flow,
+      .code-grid,
+      .tech-list,
+      .evidence-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .closing-inner,
+      .links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        position: relative;
+        align-items: center;
+      }
+
+      .hero,
+      .hero-inner {
+        min-height: 82vh;
+      }
+
+      h1 {
+        font-size: 2.55rem;
+      }
+
+      .hero-art {
+        min-height: 300px;
+      }
+
+      .logo-panel {
+        width: 78%;
+      }
+
+      .character-panel {
+        width: 68%;
+      }
+
+      .section {
+        padding: 3.4rem 5vw;
+      }
+
+      h2 {
+        font-size: 1.85rem;
+      }
+
+      .metrics,
+      .summary-grid,
+      .flow,
+      .code-grid,
+      .tech-list,
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-shot {
+        min-height: 450px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Swifter portfolio home">
+      <span class="brand-mark">S</span>
+      <span>Swifter</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow">Unity 모바일 퍼즐 · 개인 개발</span>
+          <h1 id="hero-title">Swifter</h1>
+          <p class="hero-copy">60초 안에 캐릭터를 좌우로 빠르게 분류하고, 연속 정답 콤보로 점수를 끌어올리는 하이퍼 캐주얼 판단 퍼즐입니다.</p>
+          <div class="hero-tags" aria-label="프로젝트 키워드">
+            <span>Unity 2022.3</span>
+            <span>C#</span>
+            <span>Android / iOS</span>
+            <span>Google Play Games</span>
+            <span>Game Center</span>
+            <span>AdMob</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Swifter 게임 아트">
+          <div class="logo-panel">
+            <img src="../Image/Swifter_Portfolio/swifter%20logo.png" alt="Swifter 로고">
+          </div>
+          <div class="character-panel">
+            <img src="../Image/Swifter_Portfolio/Character-Image.png" alt="Swifter 캐릭터 모음">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>프로젝트 한눈에 보기</h2>
+          <p>액션 퍼즐 미니게임의 핵심 감각을 모바일 터치 조작에 맞춰 다시 구성했습니다. 짧은 라운드, 즉시 판정, 콤보 보상, 로컬 기록 저장까지 게임 루프를 완성한 프로젝트입니다.</p>
+        </div>
+        <div class="summary-grid" aria-label="프로젝트 요약">
+          <article class="summary-card">
+            <strong>역할</strong>
+            <p>개인 프로젝트로 게임 로직, UI 흐름, 사운드, 로그인, 광고, 빌드 설정을 직접 구현했습니다.</p>
+          </article>
+          <article class="summary-card">
+            <strong>검증 결과</strong>
+            <p>Google Play Console과 App Store Connect에 앱을 업로드하고 스토어 심사/배포 흐름을 경험했습니다.</p>
+          </article>
+          <article class="summary-card">
+            <strong>현재 상태</strong>
+            <p>라이브 광고 검증 후 Android는 비활성화했고, iOS는 개발자 멤버십 해제로 현재 스토어 노출 상태가 아닙니다.</p>
+          </article>
+        </div>
+        <div class="metrics" aria-label="프로젝트 지표">
+          <div class="metric">
+            <strong>60초</strong>
+            <span>한 판 제한 시간</span>
+          </div>
+          <div class="metric">
+            <strong>10개</strong>
+            <span>미리 생성되는 캐릭터 큐</span>
+          </div>
+          <div class="metric">
+            <strong>+콤보</strong>
+            <span>연속 정답 기반 점수 누적</span>
+          </div>
+          <div class="metric">
+            <strong>2개</strong>
+            <span>Google Play / App Store 업로드 경험</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>시스템 아키텍처</h2>
+          <p>씬 전환은 전용 매니저가 요청을 받고 <code>LoadingScene</code>을 거쳐 다음 씬을 비동기로 여는 구조입니다. 플레이 중에는 입력과 셔플 기준을 바탕으로 노드를 판정하고, 기록과 사운드 설정은 로컬에 저장하며 로그인과 광고는 플랫폼 SDK와 연결했습니다.</p>
+        </div>
+        <figure class="architecture-frame">
+          <img src="../Image/Swifter_Portfolio/swifter-architecture.png" alt="Swifter의 씬 흐름, 코어 매니저, 플레이 로직, 외부 서비스를 보여주는 아키텍처 설계도">
+        </figure>
+        <p class="diagram-caption">구조 요약: 씬 흐름 -> 코어 매니저 -> 플레이 로직 -> 로컬 데이터 / 플랫폼 SDK</p>
+      </div>
+    </section>
+
+    <section class="section" id="play">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>플레이 루프</h2>
+          <p>중앙 라인의 첫 캐릭터가 왼쪽 그룹인지 오른쪽 그룹인지 판단해 버튼을 누릅니다. 정답을 이어갈수록 콤보가 점수로 바로 돌아오고, 실수하면 흐름이 끊깁니다.</p>
+        </div>
+        <div class="flow">
+          <article class="feature">
+            <h3>그룹 셔플</h3>
+            <p>시작 시 캐릭터 6개를 섞어 좌우 그룹에 나누고, 각 그룹의 태그 목록을 판정 기준으로 저장합니다.</p>
+          </article>
+          <article class="feature">
+            <h3>큐 생성</h3>
+            <p>중앙 라인에는 10개의 캐릭터가 스케일과 정렬 순서를 달리해 쌓이며, 다음 입력 대상을 미리 보여줍니다.</p>
+          </article>
+          <article class="feature">
+            <h3>즉시 판정</h3>
+            <p>좌우 버튼 입력과 캐릭터 태그를 비교해 정답이면 이동 코루틴을 실행하고 새 캐릭터를 보충합니다.</p>
+          </article>
+          <article class="feature">
+            <h3>기록 저장</h3>
+            <p>시간 종료 후 현재 점수와 최대 콤보를 비교해 최고 기록을 <code>PlayerPrefs</code>에 저장합니다.</p>
+          </article>
+        </div>
+        <div class="code-grid" aria-label="플레이 로직 코드 예시">
+          <article class="code-card">
+            <h3>NodeManager.cs · 정답 판정과 콤보 점수</h3>
+            <p>맨 앞 캐릭터의 태그가 선택한 그룹에 포함되면 콤보를 올리고, 콤보 수만큼 점수를 더합니다.</p>
+            <pre><code>if ((isLeft &amp;&amp; ShuffleManager.I.leftCharacters.Contains(characterList[0].tag))
+    || (!isLeft &amp;&amp; ShuffleManager.I.rightCharacters.Contains(characterList[0].tag)))
+{
+    GamePlayManager.I.combo++;
+    GamePlayManager.I.comboTime = 1.0f;
+    GamePlayManager.I.score += GamePlayManager.I.combo;
+
+    characterList.RemoveAt(0);
+    RandomChar();
+}
+else
+{
+    StartCoroutine(WrongWay());
+    GamePlayManager.I.combo = 0;
+}</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>NodeManager.cs · 캐릭터 큐 생성</h3>
+            <p>중앙 라인에는 10개의 캐릭터를 미리 쌓고, 뒤쪽 캐릭터일수록 작게 보여 다음 입력 흐름을 예고합니다.</p>
+            <pre><code>public void InitNode()
+{
+    characterList = new List&lt;GameObject&gt;();
+
+    for (int i = 0; i &lt; 10; i++)
+    {
+        RandomChar();
+    }
+}
+
+float scale = 1.0f - (0.1f * count);
+character.transform.localPosition = Vector3.up * yPos[count];
+character.transform.localScale = Vector3.one * scale;</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tech">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>기술 구현</h2>
+          <p>플랫폼별 로그인과 AdMob 광고를 연동하고, 설정 저장, 비동기 씬 로딩, 사운드 제어를 구현했습니다.</p>
+        </div>
+        <div class="logic-grid">
+          <div class="phone-shot">
+            <img src="../Image/Swifter_Portfolio/Character-Image.png" alt="게임 캐릭터 아트">
+          </div>
+          <div class="logic-list">
+            <article class="note accent-teal">
+              <h3>플랫폼별 인증</h3>
+              <p>Android는 Google Play Games, iOS는 Game Center를 사용하며 전처리기로 코드를 분리했습니다. 실패 시 게스트 모드로도 진입할 수 있습니다.</p>
+            </article>
+            <article class="note accent-orange">
+              <h3>콤보 점수 시스템</h3>
+              <p>정답마다 콤보를 올리고 <code>score += combo</code>로 점수를 누적해, 같은 60초 안에서도 정확도와 속도가 함께 드러나게 했습니다.</p>
+            </article>
+            <article class="note accent-coral">
+              <h3>비동기 로딩</h3>
+              <p>전용 로딩 씬에서 <code>LoadSceneAsync</code>와 이미지 fillAmount 보간을 사용해 씬 전환 흐름을 부드럽게 처리했습니다.</p>
+            </article>
+            <article class="note accent-violet">
+              <h3>광고와 설정</h3>
+              <p>AdMob 전면 광고, BGM/효과음 토글, 개인정보 처리방침 링크, 최고 기록 저장까지 모바일 서비스의 기본 요소를 구성했습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div class="code-grid" aria-label="모바일 연동 코드 예시">
+          <article class="code-card">
+            <h3>LoginManager.cs · 플랫폼별 로그인 분리</h3>
+            <p>하나의 로그인 매니저에서 플랫폼별 SDK 코드를 전처리기로 나누어 Android와 iOS 빌드를 분리했습니다.</p>
+            <pre><code>#if UNITY_ANDROID
+public void Start()
+{
+    PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+}
+#elif UNITY_IOS
+void Start()
+{
+    AppleLogin();
+}
+#endif</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>AdManager.cs · 광고 종료 후 복귀 흐름</h3>
+            <p>전면 광고가 닫히거나 열리지 못했을 때 광고를 다시 로드하고 메인 화면으로 복귀하게 처리했습니다.</p>
+            <pre><code>interstitialAd.OnAdFullScreenContentClosed += () =&gt;
+{
+    LoadInterstitialAd();
+    SceneController.I.MainScene();
+};
+
+interstitialAd.OnAdFullScreenContentFailed += (AdError error) =&gt;
+{
+    LoadInterstitialAd();
+    SceneController.I.MainScene();
+};</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="release">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>스토어 업로드와 광고 검증</h2>
+          <p>로컬 빌드에서 끝내지 않고 Google Play Console과 App Store Connect에 실제 업로드해 심사와 배포 흐름을 확인했습니다. 테스트 광고 확인 후 스토어 배포 상태에서 실제 광고 연결까지 검증했습니다.</p>
+        </div>
+        <div class="flow">
+          <article class="feature">
+            <h3>Google Play</h3>
+            <p>버전 코드 25, 버전 1.0을 프로덕션 트랙에 올렸고 2025년 2월 26일 Google Play 제공 상태를 확인했습니다.</p>
+          </article>
+          <article class="feature">
+            <h3>App Store</h3>
+            <p>iOS 버전 1.0을 App Store Connect 심사 흐름에 제출했고 2025년 2월 26일 배포 준비됨 상태까지 진행했습니다.</p>
+          </article>
+          <article class="feature">
+            <h3>실기기 광고 확인</h3>
+            <p>별도 테스트 기기에서 테스트 광고를 먼저 확인한 뒤, 배포 상태에서 라이브 광고가 정상 노출되는지 검증했습니다.</p>
+          </article>
+          <article class="feature">
+            <h3>현재 상태</h3>
+            <p>광고 검증 후 Android는 비활성화했고, iOS는 Apple Developer Program 멤버십 해제로 현재 스토어 노출 상태가 아닙니다.</p>
+          </article>
+        </div>
+        <div class="evidence-grid" aria-label="스토어 업로드 증빙 이미지">
+          <figure class="evidence">
+            <img src="../Image/Swifter_Portfolio/google-play-console-evidence.png" alt="Google Play Console에서 Swifter 프로덕션 버전이 Google Play에 제공됨으로 표시된 화면" loading="lazy">
+            <figcaption>Google Play Console 프로덕션 트랙 제공 상태와 버전 코드 25 확인 화면</figcaption>
+          </figure>
+          <figure class="evidence">
+            <img src="../Image/Swifter_Portfolio/app-store-connect-evidence.png" alt="App Store Connect에서 Swifter iOS 버전 1.0이 배포 준비됨으로 표시된 화면" loading="lazy">
+            <figcaption>App Store Connect iOS 버전 1.0 배포 준비됨 확인 화면</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>개발 중 해결한 문제</h2>
+          <p>모바일 빌드와 SDK 연동 과정에서 발생한 인증 및 의존성 문제를 추적하고, 앱 서명 인증서, 플러그인 버전, Android 빌드 설정을 점검했습니다.</p>
+        </div>
+        <ul class="tech-list">
+          <li><strong>GPGS 로그인 취소 상태</strong><span>앱 서명 키 인증서 지문 누락으로 인증이 취소되던 문제를 Google Cloud Console 설정 확인으로 추적했습니다.</span></li>
+          <li><strong>Gradle 의존성 충돌</strong><span>Google Play Games, AdMob, External Dependency Manager 버전 차이에서 발생하는 빌드 오류를 점검했습니다.</span></li>
+          <li><strong>Target SDK 설정</strong><span>Android Version이 의도와 다르게 적용될 때 ProjectSettings 값을 확인하고 Unity 재실행 후 빌드하는 흐름을 기록했습니다.</span></li>
+          <li><strong>AdMob ID 구분</strong><span>앱 ID와 광고 단위 ID의 형식 차이를 분리해 광고 초기화와 로드에 필요한 값을 정리했습니다.</span></li>
+          <li><strong>Unity 생명주기 정리</strong><span><code>Awake</code>, <code>Start</code>, <code>Update</code>와 코루틴 실행 시점을 구분해 매니저 초기화와 게임 진행을 나눴습니다.</span></li>
+          <li><strong>런타임 참조 관리</strong><span><code>SerializeField</code>, <code>GetComponent</code>, 씬 검색 API의 비용 차이를 의식하며 필요한 참조를 관리했습니다.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="closing">
+    <div class="closing-inner">
+      <div>
+        <h2>짧고 빠른 게임 루프를 끝까지 구현한 Unity 모바일 프로젝트</h2>
+        <p>게임 로직부터 UI, 플랫폼 인증, 광고, 로컬 저장, 사운드 설정까지 직접 구현했습니다. Google Play와 App Store 배포를 경험하고 실기기에서 실제 광고 노출을 검증했습니다.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+

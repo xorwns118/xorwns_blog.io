@@ -129,9 +129,9 @@ h1 {
 .project-card {
   position: relative;
   display: grid;
-  grid-template-rows: auto 1fr auto auto auto;
-  gap: 10px;
-  min-height: 360px;
+  grid-template-rows: auto auto auto 1fr auto auto;
+  gap: 9px;
+  min-height: 405px;
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -174,16 +174,36 @@ h1 {
   font-weight: 900;
 }
 
-.project-period {
+.project-summary {
   color: var(--muted);
   font-size: 0.96rem;
   font-weight: 800;
+  line-height: 1.45;
 }
 
-.project-date {
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(214, 220, 232, 0.85);
   color: var(--text);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.94rem;
+  font-weight: 800;
+}
+
+.project-meta + .project-meta {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-meta strong {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 .detail-header {
@@ -328,7 +348,7 @@ h1 {
   }
 
   .project-card {
-    min-height: 320px;
+    min-height: 380px;
   }
 
   .content-block,
